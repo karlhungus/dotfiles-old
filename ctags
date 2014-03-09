@@ -7,8 +7,8 @@
 --exclude=build
 --exclude=libs
 
---language=-html
---language=-javascript
+#--language=-html
+#--language=-javascript
 
 --langdef=Go
 --langmap=Go:.go
