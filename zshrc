@@ -36,6 +36,9 @@ plugins=(history-substring-search fasd git osx ruby bundler brew go)
 
 source $ZSH/oh-my-zsh.sh
 
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+
 # Customize to your needs...
 
 . ~/.zsh/config
