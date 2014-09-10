@@ -147,21 +147,21 @@ set laststatus=2
 let mapleader = ","
 
 " Leader shortcuts for Rails commands
-map <Leader>m :Rmodel 
-map <Leader>c :Rcontroller 
-map <Leader>v :Rview 
-map <Leader>u :Runittest 
-map <Leader>f :Rfunctionaltest 
-map <Leader>tm :RTmodel 
-map <Leader>tc :RTcontroller 
-map <Leader>tv :RTview 
-map <Leader>tu :RTunittest 
-map <Leader>tf :RTfunctionaltest 
-map <Leader>sm :RSmodel 
-map <Leader>sc :RScontroller 
-map <Leader>sv :RSview 
-map <Leader>su :RSunittest 
-map <Leader>sf :RSfunctionaltest 
+map <Leader>m :Rmodel
+map <Leader>c :Rcontroller
+map <Leader>v :Rview
+map <Leader>u :Runittest
+map <Leader>f :Rfunctionaltest
+map <Leader>tm :RTmodel
+map <Leader>tc :RTcontroller
+map <Leader>tv :RTview
+map <Leader>tu :RTunittest
+map <Leader>tf :RTfunctionaltest
+map <Leader>sm :RSmodel
+map <Leader>sc :RScontroller
+map <Leader>sv :RSview
+map <Leader>su :RSunittest
+map <Leader>sf :RSfunctionaltest
 
 map <F6> :NERDTreeToggle<cr>
 map ` :NERDTreeToggle<cr>
@@ -197,13 +197,17 @@ let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_open_new_file = 'r'
 map <leader>r :CtrlPClearCache<CR>
 map <leader>t :CtrlP<CR>
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlPLastMode'
+let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
 
-let g:path_to_matcher = "/usr/local/bin/matcher"
+"let g:path_to_matcher = "/usr/local/bin/matcher"
 
-let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files . -co --exclude-standard']
+"let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files . -co --exclude-standard']
 
-let g:ctrlp_match_func = { 'match': 'GoodMatch' }
+"let g:ctrlp_match_func = { 'match': 'GoodMatch' }
 
 function! GoodMatch(items, str, limit, mmode, ispath, crfile, regex)
 
