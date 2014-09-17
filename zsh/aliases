@@ -44,3 +44,7 @@ alias %=' '
 export TODOTXT_DEFAULT_ACTION=ls
 export TODOTXT_SORT_COMMAND='env LC_COLLATE=C sort -k 2,2 -k 1,1n'
 alias t='todo.sh -c -d ~/Dropbox/todo/todo.cfg'
+
+
+alias csesplunk="ssh -L3001:10.1.1.113:8000 -N izaak_alpert@gw.cs.use.shopify.com"
+alias cswsplunk="sudo ssh -L443:10.3.1.42:443 -i ~/.ssh/id_rsa -N izaak_alpert@devgw-west.cs.shopify.com"
