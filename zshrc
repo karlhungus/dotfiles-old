@@ -51,4 +51,4 @@ bindkey "$terminfo[kcud1]" history-substring-search-down
 [[ -f ~/.localrc ]] && . ~/.localrc
 
 
-fortune smac
+/usr/games/fortune smac
