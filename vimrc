@@ -163,6 +163,9 @@ map <Leader>sv :RSview
 map <Leader>su :RSunittest
 map <Leader>sf :RSfunctionaltest
 
+map :RubyHashConvert :s/\v:([^ ]+)\s*\=\>/\1:/g
+map <Leader>h :RubyHashConvert<CR>
+
 map <F6> :NERDTreeToggle<cr>
 map ` :NERDTreeToggle<cr>
 

@@ -1,6 +1,6 @@
 export EDITOR='vim'
 export PRY=1
-export GOROOT=/usr/local/Cellar/go/1.1.2/libexec
+#export GOROOT=/usr/local/Cellar/go/1.1.2/libexec
 export GOPATH=$HOME/src/go
 export PATH="$HOME/bin:$HOME/.bin:/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/opt/boxen/homebrew/share/python:/opt/boxen/homebrew/share/npm/bin:$PATH:$GOPATH/bin"
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
