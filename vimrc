@@ -92,6 +92,10 @@ endif
 " Switch wrap off for everything
 " set nowrap
 
+set textwidth=120               " number of columns before linewrap
+set colorcolumn=+1              " highlight the column that code shouldn't extend beyond
+hi ColorColumn guibg=#2d2d2d ctermbg=246
+
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
   " Enable file type detection.
