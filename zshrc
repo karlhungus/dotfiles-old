@@ -35,8 +35,6 @@ ZSH_THEME="crunch"
 plugins=(history-substring-search fasd git osx ruby bundler brew go)
 
 source $ZSH/oh-my-zsh.sh
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-#source /usr/local/opt/chruby/share/chruby/auto.sh
 
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
@@ -53,6 +51,8 @@ bindkey "$terminfo[kcud1]" history-substring-search-down
 [[ -f ~/.localrc ]] && . ~/.localrc
 
 if [[ $OSTYPE == darwin* ]]; then
+  source /usr/local/opt/chruby/share/chruby/chruby.sh
+  #source /usr/local/opt/chruby/share/chruby/auto.sh
   /usr/local/bin/fortune smac
 fi
 if [[ $OSTYPE == linux* ]]; then
