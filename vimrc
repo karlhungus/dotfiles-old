@@ -39,6 +39,8 @@ set nobackup
 set nowritebackup
 set history=50 " keep 50 lines of command line history
 set ruler      " show the cursor position all the time
+set relativenumber              " use relative line numbers
+set cursorline                  " highlight the current line
 set showcmd    " display incomplete commands
 set incsearch  " do incremental searching
 set visualbell
@@ -321,7 +323,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_eruby_ruby_quiet_messages = { 'regex': 'possibly useless use of a variable in void context' }
-let g:syntastic_ruby_checkers = ["mri", "rubocop"]
+" let g:syntastic_ruby_checkers = ["mri", "rubocop"]
+let g:syntastic_ruby_checkers = ["rubocop"]
 
 let g:syntastic_javascript_checkers = ["jshint", "eslint", "jsxhint"]
 
