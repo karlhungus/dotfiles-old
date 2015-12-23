@@ -193,11 +193,14 @@ map <leader>v "+p
 map <leader>u :u<CR>
 
 " Command-t settings
-let g:CommandTMatchWindowAtTop=1
-let g:CommandTCancelMap='<Esc>'
-"let g:CommandTSelectNextMap='<Down>'
-let g:CommandTSelectPrevMap=['<C-p>', '<C-k>', '<Esc>OA', '<Up>']
-"map <leader>r :CommandTFlush<CR>
+" nmap <silent> <C-P> :CommandT<CR>
+" let g:CommandTWildIgnore=&wildignore . ",**/node_modules/*"
+" let g:CommandTFileScanner="git"
+" let g:CommandTMatchWindowAtTop=1
+" let g:CommandTCancelMap='<Esc>'
+" let g:CommandTSelectNextMap='<Down>'
+" let g:CommandTSelectPrevMap=['<C-p>', '<C-k>', '<Esc>OA', '<Up>']
+" map <leader>r :CommandTFlush<CR>
 
 " Ctrl-p settings
 let g:ctrlp_working_path_mode = 2
