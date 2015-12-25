@@ -194,8 +194,11 @@ map <leader>u :u<CR>
 
 " Command-t settings
 " nmap <silent> <C-P> :CommandT<CR>
-" let g:CommandTWildIgnore=&wildignore . ",**/node_modules/*"
+set wildignore+=*.gif,*.png,*.jpg,*.jpeg,*.bmp,*.tiff,*.psd,*.svg,*.woff,*.eot,*.ttf
+set wildignore+=*/.git/*,*/.svn/*,*/log/*,*/vendor/*
+let g:CommandTWildIgnore=&wildignore . ",**/node_modules/*"
 " let g:CommandTFileScanner="git"
+let g:CommandTFileScanner="find"
 " let g:CommandTMatchWindowAtTop=1
 " let g:CommandTCancelMap='<Esc>'
 " let g:CommandTSelectNextMap='<Down>'
@@ -221,55 +224,55 @@ let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
 
 "let g:ctrlp_match_func = { 'match': 'GoodMatch' }
 
-function! GoodMatch(items, str, limit, mmode, ispath, crfile, regex)
+" function! GoodMatch(items, str, limit, mmode, ispath, crfile, regex)
 
   " Create a cache file if not yet exists
-  let cachefile = ctrlp#utils#cachedir().'/matcher.cache'
-  if !( filereadable(cachefile) && a:items == readfile(cachefile) )
-    call writefile(a:items, cachefile)
-  endif
-  if !filereadable(cachefile)
-    return []
-  endif
+"  let cachefile = ctrlp#utils#cachedir().'/matcher.cache'
+"  if !( filereadable(cachefile) && a:items == readfile(cachefile) )
+"    call writefile(a:items, cachefile)
+"  endif
+"  if !filereadable(cachefile)
+"    return []
+"  endif
 
   " a:mmode is currently ignored. In the future, we should probably do
   " something about that. the matcher behaves like "full-line".
-  let cmd = g:path_to_matcher.' --limit '.a:limit.' --manifest '.cachefile.' '
-  if !( exists('g:ctrlp_dotfiles') && g:ctrlp_dotfiles )
-    let cmd = cmd.'--no-dotfiles '
-  endif
-  let cmd = cmd.a:str
+"  let cmd = g:path_to_matcher.' --limit '.a:limit.' --manifest '.cachefile.' '
+"  if !( exists('g:ctrlp_dotfiles') && g:ctrlp_dotfiles )
+"    let cmd = cmd.'--no-dotfiles '
+"  endif
+"  let cmd = cmd.a:str
 
-  return split(system(cmd), "\n")
+"  return split(system(cmd), "\n")
 
-endfunction
+" endfunction
 
 
 " Hide search highlighting
-nmap <silent> ,/ :nohlsearch<CR>
+" nmap <silent> ,/ :nohlsearch<CR>
 
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
-map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+" map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
 " Opens a tab edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>t
-map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
+" map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
-cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+" cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 
 " No Help, please
 nmap <F1> <Esc>
 
 " Press ^F from insert mode to insert the current file name
-imap <C-F> <C-R>=expand("%")<CR>
+" imap <C-F> <C-R>=expand("%")<CR>
 
 " Maps autocomplete to tab
 imap <Tab> <C-N>
 
-imap <C-L> <Space>=><Space>
+" imap <C-L> <Space>=><Space>
 
 " Display extra whitespace
 set list listchars=tab:\ \ ,trail:·
@@ -280,9 +283,9 @@ if filereadable(".vimrc.local")
 endif
 
 " Use Ack instead of Grep when available
-if executable("ack")
-  set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
-endif
+" if executable("ack")
+"  set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
+" endif
 
 " Color scheme
 set t_Co=256 " Lets you use 256 colors
