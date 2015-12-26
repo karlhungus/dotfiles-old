@@ -227,6 +227,19 @@ colorscheme railscasts
 " Numbers
 set numberwidth=5
 
+"" line numbers
+function! ToggleLineNumberMode()
+  if(&relativenumber == 1)
+    set relativenumber!
+    set number
+  else
+    set number!
+    set relativenumber
+  endif
+endfunc
+
+nmap <leader>l :call ToggleLineNumberMode()<CR>
+
 " Snippets are activated by Shift+Tab
 " let g:snippetsEmu_key = "<S-Tab>"
 
