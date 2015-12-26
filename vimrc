@@ -193,30 +193,31 @@ map <leader>v "+p
 map <leader>u :u<CR>
 
 " Command-t settings
-" nmap <silent> <C-P> :CommandT<CR>
+nmap <silent> <C-P> :CommandT<CR>
+map <leader>t :CommandT<CR>
 set wildignore+=*.gif,*.png,*.jpg,*.jpeg,*.bmp,*.tiff,*.psd,*.svg,*.woff,*.eot,*.ttf
-set wildignore+=*/.git/*,*/.svn/*,*/log/*,*/vendor/*
+set wildignore+=*/.git/*,*/.svn/*,*/log/*,*/vendor/*,*/tmp/*
 let g:CommandTWildIgnore=&wildignore . ",**/node_modules/*"
-" let g:CommandTFileScanner="git"
+let g:CommandTFileScanner="git"
 let g:CommandTFileScanner="find"
-" let g:CommandTMatchWindowAtTop=1
-" let g:CommandTCancelMap='<Esc>'
-" let g:CommandTSelectNextMap='<Down>'
-" let g:CommandTSelectPrevMap=['<C-p>', '<C-k>', '<Esc>OA', '<Up>']
-" map <leader>r :CommandTFlush<CR>
+let g:CommandTMatchWindowAtTop=1
+let g:CommandTCancelMap='<Esc>'
+let g:CommandTSelectNextMap='<Down>'
+let g:CommandTSelectPrevMap=['<C-p>', '<C-k>', '<Esc>OA', '<Up>']
+map <leader>r :CommandTFlush<CR>
 
 " Ctrl-p settings
-let g:ctrlp_working_path_mode = 2
-let g:ctrlp_match_window_bottom = 0
-let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_open_new_file = 'r'
-map <leader>r :CtrlPClearCache<CR>
-map <leader>t :CtrlP<CR>
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+" let g:ctrlp_working_path_mode = 2
+" let g:ctrlp_match_window_bottom = 0
+" let g:ctrlp_match_window_reversed = 0
+" let g:ctrlp_open_new_file = 'r'
+" map <leader>r :CtrlPClearCache<CR>
+" map <leader>t :CtrlP<CR>
+" let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlPLastMode'
-let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
+" let g:ctrlp_map = '<c-p>'
+" let g:ctrlp_cmd = 'CtrlPLastMode'
+" let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
 
 "let g:path_to_matcher = "/usr/local/bin/matcher"
 
