@@ -206,74 +206,8 @@ let g:CommandTSelectNextMap='<Down>'
 let g:CommandTSelectPrevMap=['<C-p>', '<C-k>', '<Esc>OA', '<Up>']
 map <leader>r :CommandTFlush<CR>
 
-" Ctrl-p settings
-" let g:ctrlp_working_path_mode = 2
-" let g:ctrlp_match_window_bottom = 0
-" let g:ctrlp_match_window_reversed = 0
-" let g:ctrlp_open_new_file = 'r'
-" map <leader>r :CtrlPClearCache<CR>
-" map <leader>t :CtrlP<CR>
-" let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-" let g:ctrlp_map = '<c-p>'
-" let g:ctrlp_cmd = 'CtrlPLastMode'
-" let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
-
-"let g:path_to_matcher = "/usr/local/bin/matcher"
-
-"let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files . -co --exclude-standard']
-
-"let g:ctrlp_match_func = { 'match': 'GoodMatch' }
-
-" function! GoodMatch(items, str, limit, mmode, ispath, crfile, regex)
-
-  " Create a cache file if not yet exists
-"  let cachefile = ctrlp#utils#cachedir().'/matcher.cache'
-"  if !( filereadable(cachefile) && a:items == readfile(cachefile) )
-"    call writefile(a:items, cachefile)
-"  endif
-"  if !filereadable(cachefile)
-"    return []
-"  endif
-
-  " a:mmode is currently ignored. In the future, we should probably do
-  " something about that. the matcher behaves like "full-line".
-"  let cmd = g:path_to_matcher.' --limit '.a:limit.' --manifest '.cachefile.' '
-"  if !( exists('g:ctrlp_dotfiles') && g:ctrlp_dotfiles )
-"    let cmd = cmd.'--no-dotfiles '
-"  endif
-"  let cmd = cmd.a:str
-
-"  return split(system(cmd), "\n")
-
-" endfunction
-
-
-" Hide search highlighting
-" nmap <silent> ,/ :nohlsearch<CR>
-
-" Opens an edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>e
-" map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-
-" Opens a tab edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>t
-" map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
-
-" Inserts the path of the currently edited file into a command
-" Command mode: Ctrl+P
-" cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-
-" No Help, please
-nmap <F1> <Esc>
-
-" Press ^F from insert mode to insert the current file name
-" imap <C-F> <C-R>=expand("%")<CR>
-
 " Maps autocomplete to tab
 imap <Tab> <C-N>
-
-" imap <C-L> <Space>=><Space>
 
 " Display extra whitespace
 set list listchars=tab:\ \ ,trail:·
@@ -283,11 +217,6 @@ if filereadable(".vimrc.local")
   source .vimrc.local
 endif
 
-" Use Ack instead of Grep when available
-" if executable("ack")
-"  set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
-" endif
-
 " Color scheme
 set t_Co=256 " Lets you use 256 colors
 colorscheme railscasts
@@ -296,7 +225,6 @@ colorscheme railscasts
 " highlight Folded  guibg=#0A0A0A guifg=#9090D0
 
 " Numbers
-set number
 set numberwidth=5
 
 " Snippets are activated by Shift+Tab
