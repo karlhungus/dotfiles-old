@@ -303,3 +303,5 @@ else
     autocmd VimLeave * :!echo -ne "\<Esc>]50;CursorShape=0\x7"
   endif
 endif
+
+set secure
