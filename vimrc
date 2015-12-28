@@ -1,32 +1,41 @@
-" based on http://github.com/jferris/config_files/blob/master/vimrc
-
-call pathogen#infect()
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
+" required for vundle
 set nocompatible
-set mouse=a
-set cb=autoselect
 
 " Some Linux distributions set filetype in /etc/vimrc.
 " Clear filetype flags before changing runtimepath to force Vim to reload them.
+" required for vundle
 filetype off
-filetype plugin indent off
-set runtimepath+=$GOROOT/misc/vim
-filetype plugin indent on
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+
+Plugin 'wincent/command-t'
+Plugin 'tpope/vim-fugitive'
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-endwise'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'jpo/vim-railscasts-theme'
+Plugin 'scrooloose/nerdtree'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+set mouse=a
+set cb=autoselect
+
+"filetype plugin indent off
+"set runtimepath+=$GOROOT/misc/vim
+"filetype plugin indent on
 syntax on
-
-" disable arrow keys
-"map <up> <nop>
-"map <down> <nop>
-"map <left> <nop>
-"map <right> <nop>
-"imap <up> <nop>
-"imap <down> <nop>
-"imap <left> <nop>
-"imap <right> <nop>
-
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
