@@ -1,11 +1,11 @@
-= Ryan Bates Dot Files
+= Izaak Alpert (bastardized from Jduff/Ryan Bates) Dot Files
 
 These are config files to set up a system the way I like it.
 
 
 == Installation
 
-  git clone git://github.com/ryanb/dotfiles ~/.dotfiles
+  git clone git://github.com/karlhungus/dotfiles ~/.dotfiles
   cd ~/.dotfiles
   rake install
 
@@ -72,3 +72,24 @@ There are several features enabled in Ruby's irb including history and
 completion. Many convenience methods are added as well such as "ri"
 which can be used to get inline documentation in IRB. See irbrc and
 railsrc files for details.
+
+
+Things I've done but haven't automated:
+
+ - CommandT
+ `rake make in vim/bundle/command-t dir
+ - YouCompleteMe (might need to check the pages
+  ```
+    sudo apt-get install cmake #(for you complete me)
+    sudo apt-get install python-dev
+    cd ~/.vim/bundle/YouCompleteMe.
+    cd ~
+    mkdir ycm_build
+    cd ycm_build
+    #cmake -G "<generator>" . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
+    cmake -G "Unix Makefiles" . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
+    cmake --build . --target ycm_support_libs --config Release
+    # For specific support (javascript/gocode look at the YouCompleteMe page here:
+    # https://github.com/Valloric/YouCompleteMe)
+
+
