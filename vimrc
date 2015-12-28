@@ -24,7 +24,7 @@ Plugin 'tpope/vim-endwise'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'jpo/vim-railscasts-theme'
 Plugin 'scrooloose/nerdtree'
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
