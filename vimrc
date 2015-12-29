@@ -22,9 +22,11 @@ Plugin 'bling/vim-airline'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-endwise'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'jpo/vim-railscasts-theme'
+Plugin 'karlhungus/vim-railscasts-theme'
 Plugin 'scrooloose/nerdtree'
 " Plugin 'Valloric/YouCompleteMe'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'tpope/vim-rails'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -292,6 +294,14 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 let g:airline_symbols.space = "\ua0"
+
+"You complete me
+" let g:ycm_key_list_select_completion = ['<Down>']
+" let g:ycm_key_list_previous_completion = ['<Up>']
+" let g:ycm_show_diagnostics_ui = 1
+" let g:ycm_always_populate_location_list = 1
+" let g:ycm_seed_identifiers_with_syntax = 1
+
 
 " tmux will only forward escape sequences to the terminal if surrounded by a DCS sequence
 " http://sourceforge.net/mailarchive/forum.php?thread_name=AANLkTinkbdoZ8eNR1X2UobLTeww1jFrvfJxTMfKSq-L%2B%40mail.gmail.com&forum_name=tmux-users
