@@ -27,6 +27,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-rails'
+Plugin 'roman/golden-ratio'
+Plugin 'mattn/emmet-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -70,6 +72,10 @@ nnoremap * *<c-o>
 " Faster Esc
 inoremap jk <esc>
 
+
+set splitright                  " open new splits to the right
+set splitbelow                  " ... and bottom
+
 " Align text
 nnoremap <leader>Al :left<cr>
 nnoremap <leader>Ac :center<cr>
@@ -110,48 +116,46 @@ set textwidth=120               " number of columns before linewrap
 set colorcolumn=+1              " highlight the column that code shouldn't extend beyond
 hi ColorColumn guibg=#2d2d2d ctermbg=246
 
-" Only do this part when compiled with support for autocommands.
+set autoread                    " when a file's content's have changed, automatically load it again
+
 if has("autocmd")
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
+  "" Filetypes
+  autocmd BufRead,BufNewFile *.rabl setf ruby
+  autocmd BufRead,BufNewFile *.god setf ruby
+  autocmd BufRead,BufNewFile *.cap setf ruby
+  " use set filetype to override default
+  autocmd BufRead,BufNewFile *.htm.erb set filetype=html.eruby
+  autocmd BufRead,BufNewFile *.json setf javascript
+  autocmd BufRead,BufNewFile *.ejson setf javascript
+  autocmd BufRead,BufNewFile *.json.erb setf javascript.eruby
+  autocmd BufRead,BufNewFile *.json.jbuilder setf ruby
+  autocmd BufRead,BufNewFile *.ejs setf javascript
+  autocmd BufRead,BufNewFile *.go setf go
+  " File types that require tabs, not spaces
+  autocmd FileType make set noexpandtab
+  autocmd FileType python set noexpandtab
 
-  " Set File type to 'text' for files ending in .txt
-  autocmd BufNewFile,BufRead *.txt setfiletype text
+  " Manage whitespace on save, maintaining cursor position
+  function ClearTrailingWhitespace()
+    let g:clearwhitespace = exists('g:clearwhitespace') ? g:clearwhitespace : 1
+    if g:clearwhitespace
+      let save_cursor = getpos(".")
+      :silent! %s/\s\+$//e " clear trailing whitespace at the end of each line
+      :silent! %s/\($\n\)\+\%$// " clear trailing newlines
+      call setpos('.', save_cursor)
+    endif
+  endfunction
+  autocmd FileType ruby,haml,eruby,javascript,coffee,css,scss,lua,handlebars,yaml autocmd BufWritePre <buffer> call ClearTrailingWhitespace()
 
-  " Enable soft-wrapping for text files
-  autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
+  " Remember last location in file, but not for commit messages. (see :help last-position-jump)
+  autocmd BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g`\"" | endif
 
-  autocmd FileType html,xml,xsl,php,jsp,eruby let b:closetag_html_style=1
-  autocmd FileType html,xml,xsl,php,jsp,eruby source ~/.vim/scripts/closetag.vim
+  " Close when NERDTree is the last open buffer
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
-
-  " For all text files set 'textwidth' to 78 characters.
-  " autocmd FileType text setlocal textwidth=78
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
-
-  " Automatically load .vimrc source when saved
-  autocmd BufWritePost .vimrc source $MYVIMRC
-
-  augroup END
-
-else
-
-  set autoindent " always set autoindenting on
-
-endif " has("autocmd")
+  autocmd FileType html,css,haml,eruby,handlebars,liquid EmmetInstall
+endif
 
 " Softtabs, 2 spaces
 set tabstop=2
