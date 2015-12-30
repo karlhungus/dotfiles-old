@@ -291,6 +291,7 @@ let g:syntastic_eruby_ruby_quiet_messages = { 'regex': 'possibly useless use of 
 let g:syntastic_ruby_checkers = ["rubocop"]
 
 let g:syntastic_javascript_checkers = ["jshint", "eslint", "jsxhint"]
+let g:syntastic_auto_loc_list = 2 " When set to 2 the error window will be automatically closed when no errors are detected, but not opened automatically
 
 " Airline
 let g:airline_powerline_fonts = 1
