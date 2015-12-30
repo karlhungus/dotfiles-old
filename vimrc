@@ -24,7 +24,7 @@ Plugin 'tpope/vim-endwise'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'karlhungus/vim-railscasts-theme'
 Plugin 'scrooloose/nerdtree'
-" Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-rails'
 
@@ -219,7 +219,7 @@ let g:CommandTSelectPrevMap=['<C-p>', '<C-k>', '<Esc>OA', '<Up>']
 map <leader>r :CommandTFlush<CR>
 
 " Maps autocomplete to tab
-imap <Tab> <C-N>
+" imap <Tab> <C-N>
 
 " Display extra whitespace
 set list listchars=tab:\ \ ,trail:·
@@ -296,12 +296,26 @@ endif
 let g:airline_symbols.space = "\ua0"
 
 "You complete me
-" let g:ycm_key_list_select_completion = ['<Down>']
-" let g:ycm_key_list_previous_completion = ['<Up>']
-" let g:ycm_show_diagnostics_ui = 1
+
+let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_show_diagnostics_ui = 1
 " let g:ycm_always_populate_location_list = 1
 " let g:ycm_seed_identifiers_with_syntax = 1
+" let g:ycm_server_log_level = "debug"
+let g:ycm_enable_diagnostic_highlighting = 1
 
+" Integrate YouCompleteMe with vim-multiple-cursors, otherwise
+" the numerous Cursor events cause great slowness
+" (https://github.com/kristijanhusak/vim-multiple-cursors/issues/4)
+function Multiple_cursors_before()
+  let s:old_ycm_whitelist = g:ycm_filetype_whitelist
+  let g:ycm_filetype_whitelist = {}
+endfunction
+
+function Multiple_cursors_after()
+  let g:ycm_filetype_whitelist = s:old_ycm_whitelist
+endfunction
 
 " tmux will only forward escape sequences to the terminal if surrounded by a DCS sequence
 " http://sourceforge.net/mailarchive/forum.php?thread_name=AANLkTinkbdoZ8eNR1X2UobLTeww1jFrvfJxTMfKSq-L%2B%40mail.gmail.com&forum_name=tmux-users
