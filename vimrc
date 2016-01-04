@@ -30,7 +30,9 @@ Plugin 'tpope/vim-rails'
 Plugin 'roman/golden-ratio'
 Plugin 'mattn/emmet-vim'
 Plugin 'fatih/vim-go'
+Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
