@@ -59,5 +59,7 @@ if [[ $OSTYPE == linux* ]]; then
   /usr/games/fortune smac
 fi
 
+zstyle :omz:plugins:ssh-agent agent-forwarding on
+
 export NVM_DIR="/home/vagrant/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
