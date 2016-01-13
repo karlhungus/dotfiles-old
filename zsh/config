@@ -8,6 +8,8 @@ if [[ $OSTYPE == darwin* ]]; then
 
   export NVM_DIR=~/.nvm
   source $(brew --prefix nvm)/nvm.sh
+
+  export RUBIES+=(~/.rbenv/versions/*)
 fi
 
 if [[ $OSTYPE == linux_gun* ]]; then
