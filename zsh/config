@@ -14,6 +14,8 @@ fi
 
 if [[ $OSTYPE == linux_gun* ]]; then
   export GOPATH=$HOME/src/go
+  RUBIES+=(~/.rbenv/versions/*)
+  RUBIES+=(usr/lib/shopify-ruby/*)
 fi
 
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
