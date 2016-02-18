@@ -12,7 +12,7 @@ if [[ $OSTYPE == darwin* ]]; then
   RUBIES+=(~/.rbenv/versions/*)
 fi
 
-if [[ $OSTYPE == linux_gun* ]]; then
+if [[ $OSTYPE == linux_gnu* ]]; then
   export GOPATH=$HOME/src/go
   RUBIES+=(~/.rbenv/versions/*)
   RUBIES+=(usr/lib/shopify-ruby/*)

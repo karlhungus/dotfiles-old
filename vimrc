@@ -128,6 +128,8 @@ if has("autocmd")
   autocmd BufRead,BufNewFile *.rabl setf ruby
   autocmd BufRead,BufNewFile *.god setf ruby
   autocmd BufRead,BufNewFile *.cap setf ruby
+  " CocoaPods
+  autocmd BufNewFile,BufRead Podfile,*.podspec setf ruby
   " use set filetype to override default
   autocmd BufRead,BufNewFile *.htm.erb set filetype=html.eruby
   autocmd BufRead,BufNewFile *.json setf javascript
