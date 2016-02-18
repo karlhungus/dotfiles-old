@@ -9,6 +9,8 @@ _site
 *.gem
 .bootstrap
 vendor/src
+vendor/bundle
+vendor/bin
 .rbenv-vars
 log
 tmp
