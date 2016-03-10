@@ -66,6 +66,3 @@ export NVM_DIR="/home/vagrant/.nvm"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# chruby
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
