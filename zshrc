@@ -66,3 +66,5 @@ export NVM_DIR="/home/vagrant/.nvm"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+
+[ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
