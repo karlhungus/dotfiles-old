@@ -16,3 +16,9 @@ log
 tmp
 
 nb-configuration.xml
+
+
+# byom
+.env_local
+.env_prod
+.env_backup
