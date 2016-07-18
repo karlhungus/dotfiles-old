@@ -31,8 +31,9 @@ Plugin 'tpope/vim-rails'
 Plugin 'roman/golden-ratio'
 Plugin 'mattn/emmet-vim'
 Plugin 'fatih/vim-go'
-Plugin 'mattn/webapi-vim'
-Plugin 'mattn/gist-vim'
+" Plugin 'mattn/webapi-vim'
+" Plugin 'mattn/gist-vim'
+Plugin 'KurtPreston/vim-autoformat-rails'
 
 
 " All of your Plugins must be added before the following line
