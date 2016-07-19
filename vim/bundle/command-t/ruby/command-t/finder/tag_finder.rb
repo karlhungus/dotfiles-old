@@ -1,4 +1,4 @@
-# Copyright 2011-2014 Greg Hurrell. All rights reserved.
+# Copyright 2011-present Greg Hurrell. All rights reserved.
 # Licensed under the terms of the BSD 2-clause license.
 
 module CommandT
@@ -20,6 +20,10 @@ module CommandT
 
       def flush
         @scanner.flush
+      end
+
+      def name
+        'Tags'
       end
     end # class TagFinder
   end # class Finder

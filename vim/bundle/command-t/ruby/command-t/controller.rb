@@ -1,4 +1,4 @@
-# Copyright 2010-2015 Greg Hurrell. All rights reserved.
+# Copyright 2010-present Greg Hurrell. All rights reserved.
 # Licensed under the terms of the BSD 2-clause license.
 
 module CommandT
@@ -25,8 +25,6 @@ module CommandT
     end
 
     def initialize
-      @prompt = Prompt.new
-
       encoding = VIM::get_string('g:CommandTEncoding')
       if encoding
         begin
@@ -151,17 +149,18 @@ module CommandT
     guard :refresh
 
     def flush
+      @file_finder  = nil
       @max_height   = nil
       @min_height   = nil
-      @file_finder  = nil
+      @prompt       = nil
       @tag_finder   = nil
     end
     guard :flush
 
     def handle_key
       key = ::VIM::evaluate('a:arg').to_i.chr
-      if @focus == @prompt
-        @prompt.add! key
+      if @focus == prompt
+        prompt.add! key
         @needs_update = true
       else
         @match_window.find key
@@ -170,16 +169,16 @@ module CommandT
     guard :handle_key
 
     def backspace
-      if @focus == @prompt
-        @prompt.backspace!
+      if @focus == prompt
+        prompt.backspace!
         @needs_update = true
       end
     end
     guard :backspace
 
     def delete
-      if @focus == @prompt
-        @prompt.delete!
+      if @focus == prompt
+        prompt.delete!
         @needs_update = true
       end
     end
@@ -194,7 +193,7 @@ module CommandT
 
     def toggle_focus
       @focus.unfocus # old focus
-      @focus = @focus == @prompt ? @match_window : @prompt
+      @focus = @focus == prompt ? @match_window : prompt
       @focus.focus # new focus
     end
     guard :toggle_focus
@@ -215,34 +214,34 @@ module CommandT
     guard :select_prev
 
     def clear
-      @prompt.clear!
+      prompt.clear!
       list_matches!
     end
     guard :clear
 
     def clear_prev_word
-      @prompt.clear_prev_word!
+      prompt.clear_prev_word!
       list_matches!
     end
     guard :clear_prev_word
 
     def cursor_left
-      @prompt.cursor_left if @focus == @prompt
+      prompt.cursor_left if @focus == prompt
     end
     guard :cursor_left
 
     def cursor_right
-      @prompt.cursor_right if @focus == @prompt
+      prompt.cursor_right if @focus == prompt
     end
     guard :cursor_right
 
     def cursor_end
-      @prompt.cursor_end if @focus == @prompt
+      prompt.cursor_end if @focus == prompt
     end
     guard :cursor_end
 
     def cursor_start
-      @prompt.cursor_start if @focus == @prompt
+      prompt.cursor_start if @focus == prompt
     end
     guard :cursor_start
 
@@ -258,10 +257,12 @@ module CommandT
       return unless @needs_update || options[:force]
 
       @matches = @active_finder.sorted_matches_for(
-        @prompt.abbrev,
+        prompt.abbrev,
         :case_sensitive => case_sensitive?,
         :limit          => match_limit,
-        :threads        => CommandT::Util.processor_count
+        :threads        => CommandT::Util.processor_count,
+        :ignore_spaces  => VIM::get_bool('g:CommandTIgnoreSpaces'),
+        :recurse        => VIM::get_bool('g:CommandTRecursiveMatch', true),
       )
       @match_window.matches = @matches
 
@@ -283,6 +284,12 @@ module CommandT
 
   private
 
+    def prompt
+      @prompt ||= Prompt.new(
+        :cursor_color => VIM::get_string('g:CommandTCursorColor')
+      )
+    end
+
     def scm_markers
       markers = VIM::get_string('g:CommandTSCMDirectories')
       markers = markers && markers.split(/\s*,\s*/)
@@ -303,9 +310,10 @@ module CommandT
         :match_window_reverse => VIM::get_bool('g:CommandTMatchWindowReverse'),
         :min_height           => min_height,
         :debounce_interval    => VIM::get_number('g:CommandTInputDebounce') || 50,
-        :prompt               => @prompt
-      @focus            = @prompt
-      @prompt.focus
+        :prompt               => prompt,
+        :name                 => "Command-T [#{@active_finder.name}]"
+      @focus            = prompt
+      prompt.focus
       register_for_key_presses
       set_up_autocmds
       clear # clears prompt and lists matches
@@ -324,7 +332,7 @@ module CommandT
     end
 
     def case_sensitive?
-      if @prompt.abbrev.match(/[A-Z]/)
+      if prompt.abbrev.match(/[A-Z]/)
         if VIM::exists?('g:CommandTSmartCase')
           smart_case = VIM::get_bool('g:CommandTSmartCase')
         else
@@ -402,7 +410,7 @@ module CommandT
 
     def map(key, function, param = nil)
       ::VIM::command "noremap <silent> <buffer> #{key} " \
-        ":call CommandT#{function}(#{param})<CR>"
+        ":call commandt#private##{function}(#{param})<CR>"
     end
 
     def term
@@ -457,7 +465,7 @@ module CommandT
     def set_up_autocmds
       ::VIM::command 'augroup CommandTController'
       ::VIM::command 'autocmd!'
-      ::VIM::command 'autocmd CursorHold <buffer> :call CommandTListMatches()'
+      ::VIM::command 'autocmd CursorHold <buffer> :call commandt#private#ListMatches()'
       ::VIM::command 'augroup END'
     end
 

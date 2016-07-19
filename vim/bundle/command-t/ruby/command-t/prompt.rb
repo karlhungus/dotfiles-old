@@ -1,4 +1,4 @@
-# Copyright 2010-2014 Greg Hurrell. All rights reserved.
+# Copyright 2010-present Greg Hurrell. All rights reserved.
 # Licensed under the terms of the BSD 2-clause license.
 
 module CommandT
@@ -6,10 +6,11 @@ module CommandT
   class Prompt
     attr_accessor :abbrev
 
-    def initialize
-      @abbrev     = ''  # abbreviation entered so far
-      @col        = 0   # cursor position
-      @has_focus  = false
+    def initialize(options = {})
+      @abbrev       = ''  # abbreviation entered so far
+      @col          = 0   # cursor position
+      @cursor_color = options[:cursor_color] || 'Underlined'
+      @has_focus    = false
     end
 
     # Erase whatever is displayed in the prompt line,
@@ -117,7 +118,7 @@ module CommandT
       if @has_focus
         prompt_highlight = 'Comment'
         normal_highlight = 'None'
-        cursor_highlight = 'Underlined'
+        cursor_highlight = @cursor_color
       else
         prompt_highlight = 'NonText'
         normal_highlight = 'NonText'

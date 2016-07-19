@@ -1,12 +1,9 @@
 export EDITOR='vim'
 export PRY=1
 
-# chruby
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
-
 if [[ $OSTYPE == darwin* ]]; then
-  export GOROOT=/usr/local/Cellar/go/1.1.2/libexec
+  #export GOROOT=/usr/local/Cellar/go/1.1.2/libexec
+  export GOROOT=/usr/local/Cellar/go15/1.5.4/libexec
   export PATH="$HOME/bin:$HOME/.bin:/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/opt/boxen/homebrew/share/python:/opt/boxen/homebrew/share/npm/bin:$PATH:$GOPATH/bin:$HOME/.android-sdk/platform-tools/"
   export GOPATH=$HOME/go
 
@@ -17,6 +14,11 @@ if [[ $OSTYPE == darwin* ]]; then
 fi
 
 if [[ $OSTYPE == linux* ]]; then
+  # chruby
+  source /usr/local/share/chruby/chruby.sh
+  source /usr/local/share/chruby/auto.sh
+
+
   export GOPATH=$HOME/src/go
   RUBIES+=(
     ~/.rbenv/versions/*

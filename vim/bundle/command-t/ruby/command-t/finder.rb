@@ -1,4 +1,4 @@
-# Copyright 2010-2014 Greg Hurrell. All rights reserved.
+# Copyright 2010-present Greg Hurrell. All rights reserved.
 # Licensed under the terms of the BSD 2-clause license.
 
 require 'command-t/ext' # CommandT::Matcher, CommandT::Watchman::Utils
@@ -20,6 +20,12 @@ module CommandT
     include PathUtilities
 
     def initialize(path = Dir.pwd, options = {})
+      raise RuntimeError, 'Subclass responsibility'
+    end
+
+    # Returns a human-readable name describing the finder, for display in the
+    # statusline attached to the MatchWindow buffer.
+    def name
       raise RuntimeError, 'Subclass responsibility'
     end
 

@@ -1,4 +1,4 @@
-# Copyright 2010-2014 Greg Hurrell. All rights reserved.
+# Copyright 2010-present Greg Hurrell. All rights reserved.
 # Licensed under the terms of the BSD 2-clause license.
 
 require 'spec_helper'
@@ -47,6 +47,20 @@ describe CommandT::Matcher do
     it 'performs case-insensitive matching' do
       matches = matcher('Foo').sorted_matches_for('f')
       matches.map { |m| m.to_s }.should == ['Foo']
+    end
+
+    it 'considers the space character to match a literal space' do
+      paths = ['path_no_space', 'path with/space']
+      matches = matcher(*paths).sorted_matches_for('path space')
+      matches.map { |m| m.to_s }.should == ['path with/space']
+    end
+
+    context 'when the ignore_spaces option in specified' do
+      it 'ignores the space character' do
+        paths = ['path_no_space', 'path with/space']
+        matches = matcher(*paths).sorted_matches_for('path space', :ignore_spaces => true)
+        matches.map { |m| m.to_s }.should == ['path_no_space', 'path with/space']
+      end
     end
 
     it 'considers the empty string to match everything' do
